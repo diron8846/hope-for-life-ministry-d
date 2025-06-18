@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope for Life Jesus Ministry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#7C3AED',      // Deep purple
+                        secondary: '#059669',    // Green
+                        accent: '#A855F7',       // Light purple
+                        golden: '#10B981',       // Emerald green
+                        'golden-dark': '#047857', // Dark green
+                        'red-light': '#34D399',  // Light green
+                        light: '#F8FAFC'         // Light background
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .hero-section {
+            background-image: linear-gradient(rgba(124, 58, 237, 0.8), rgba(168, 85, 247, 0.8)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .donation-bg {
+            background-image: linear-gradient(rgba(5, 150, 105, 0.9), rgba(5, 150, 105, 0.9)), url('https://images.unsplash.com/photo-1504376379689-8d54347b26c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .verse-bg {
+            background-image: linear-gradient(rgba(124, 58, 237, 0.9), rgba(124, 58, 237, 0.9)), url('https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .header-underline::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #10B981;
+            margin: 10px auto;
+        }
+
+        .header-underline-left::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #059669;
+            margin: 10px 0;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #10B981;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
+        }
+
+        .mobile-menu.show {
+            transform: translateX(0);
+        }
+
+        .event-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .prayer-form input,
+        .prayer-form textarea {
+            transition: border-color 0.3s;
+        }
+
+        .prayer-form input:focus,
+        .prayer-form textarea:focus {
+            border-color: #7C3AED;
+            outline: none;
+        }
+
+        .dark .prayer-form input:focus,
+        .dark .prayer-form textarea:focus {
+            border-color: #10B981;
+        }
+
+        /* Dark mode adjustments */
+        .dark .header-underline::after {
+            background-color: #10B981;
+        }
+
+        .dark .header-underline-left::after {
+            background-color: #34D399;
+        }
+
+        .dark .nav-link::after {
+            background-color: #10B981;
+        }
+    </style>
+</head>
+<body class="bg-light dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-900 shadow-lg fixed w-full z-50 border-b-2 border-golden">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo & Brand Name -->
+                <div class="flex items-center">
+                    <!-- Logo Image -->
+                    <div class="mr-3">
+                        <img src="logo.png" alt="Hope for Life Ministry Logo" class="h-12 w-12 object-contain">
+                    </div>
+                    <!-- Brand Text -->
+                    <div class="text-primary dark:text-golden font-bold text-2xl">
+                        <span class="text-secondary dark:text-red-light">Hope</span> for Life
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">About</a>
+                    <a href="#mission" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">Ministries</a>
+                    <a href="#school" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">School</a>
+                    <a href="#gallery" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">Gallery</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">Testimonials</a>
+                    <a href="#events" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">Events</a>
+                    <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">Contact</a>
+                    <a href="#partner" class="ml-4 px-5 py-2 bg-golden hover:bg-golden-dark text-primary font-semibold rounded-md transition-all transform hover:scale-105">Partner With Us</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white dark:bg-gray-800 fixed inset-0 z-50 mobile-menu p-4" style="width: 80%; max-width: 300px;">
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center">
+                    <!-- Logo Image -->
+                    <div class="mr-2">
+                        <img src="logo.png" alt="Hope for Life Ministry Logo" class="h-10 w-10 object-contain">
+                    </div>
+                    <!-- Brand Text -->
+                    <div class="text-primary dark:text-golden font-bold text-xl">
+                        <span class="text-secondary dark:text-red-light">Hope</span> for Life
+                    </div>
+                </div>
+                <button id="close-mobile-menu" class="text-gray-700 dark:text-gray-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden mobile-link">Home</a>
+                <a href="#about" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden mobile-link">About</a>
+                <a href="#mission" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden mobile-link">Ministries</a>
+                <a href="#school" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden mobile-link">School</a>
+                <a href="#gallery" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden mobile-link">Gallery</a>
+                <a href="#testimonials" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden mobile-link">Testimonials</a>
+                <a href="#events" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden mobile-link">Events</a>
+                <a href="#contact" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-golden mobile-link">Contact</a>
+                <a href="#partner" class="mt-4 px-5 py-2 bg-golden hover:bg-golden-dark text-primary font-semibold rounded-md transition-all text-center">Partner With Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-16 text-center text-white">
+            <div class="animate-fade-in-up">
+                <!-- Hero Logo -->
+                <div class="mb-8">
+                    <img src="logo.png" alt="Hope for Life Ministry Logo" class="h-32 w-32 md:h-40 md:w-40 object-contain mx-auto mb-6 bg-white bg-opacity-20 rounded-full p-4 backdrop-blur-sm">
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-shadow">Hope for Life Jesus Ministry</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Reaching, Equipping, Empowering and Sending</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <a href="#about" class="px-8 py-3 bg-golden hover:bg-golden-dark text-primary font-semibold rounded-md transition-all transform hover:scale-105">Learn More</a>
+                    <a href="#partner" class="px-8 py-3 bg-white text-primary hover:bg-gray-100 font-semibold rounded-md transition-all transform hover:scale-105">Partner With Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bible Verse Section -->
+    <section class="verse-bg py-16 text-white text-center">
+        <div class="container mx-auto px-4">
+            <div class="animate-fade-in">
+                <h2 class="text-2xl md:text-3xl font-serif italic mb-4 leading-relaxed">
+                    "The Spirit of the Lord is upon me, because he hath anointed me to preach the gospel to the poor; he hath sent me to heal the brokenhearted, to preach deliverance to the captives, and recovering of sight to the blind, to set at liberty them that are bruised."
+                </h2>
+                <p class="text-xl font-semibold text-golden">Luke 4:18</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-light dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-primary dark:text-golden">About Us</h2>
+            <div class="header-underline"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 items-center">
+                <div class="animate-slide-in-left">
+                    <p class="text-lg mb-6">
+                        Pastor Dismus Mutuku has been at the forefront of missions, from cities to villages, with a deep burden to see people receive the Kingdom of God, set free and filled by the Holy Spirit. He has raised ministers through organized Missions, Conference and Revival Meetings.
+                    </p>
+                    <p class="text-lg mb-6">
+                        Our Ministry Centre is located at Nairobi, Githurai 45, Mwihoko. Hope For Life Ministry strength is based on biblical truths that enhance the revelation of Kingdom through the Graces given by the Holy Ghost. We stand by Practicing Faith, Prayer and the word.
+                    </p>
+                    <h3 class="text-xl font-bold mb-3 header-underline-left text-secondary dark:text-red-light">Our Vision</h3>
+                    <ul class="list-disc pl-6 mb-6 space-y-2">
+                        <li>Reaching out for Lost Souls</li>
+                        <li>Preaching/Teaching the word of God</li>
+                        <li>Empowering Body of Christ</li>
+                        <li>Preparing Church for the Second Coming of Christ</li>
+                    </ul>
+
+                    <h3 class="text-xl font-bold mb-3 header-underline-left text-secondary dark:text-red-light">Our Mission</h3>
+                    <p class="text-lg font-semibold text-primary dark:text-golden">
+                        "Reaching, Equipping (Training), Empowering and Sending"
+                    </p>
+                </div>
+                <div class="space-y-6 animate-slide-in-right">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-l-4 border-golden">
+                        <h3 class="text-xl font-bold mb-4 text-primary dark:text-golden flex items-center">
+                            <i class="fas fa-phone-alt mr-2"></i>The Call
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            I had a dream which changed my life. I was sleeping one night I saw Jesus coming to me: He was dressed in white apparel holding a Bible. When He reached where I was, he opened the Bible in the book Luke 4:18.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-l-4 border-secondary">
+                        <h3 class="text-xl font-bold mb-4 text-secondary dark:text-red-light flex items-center">
+                            <i class="fas fa-heart mr-2"></i>The Purpose
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            To spread the Gospel of Jesus Christ and make disciples who will impact their communities for God's glory.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-l-4 border-accent">
+                        <h3 class="text-xl font-bold mb-4 text-accent dark:text-accent flex items-center">
+                            <i class="fas fa-hands mr-2"></i>The Ministry
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Through worship, teaching, community service, and discipleship, we serve God and our neighbors.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministry Programs Section -->
+    <section id="mission" class="py-16 bg-gradient-to-br from-primary to-accent text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">Ministry Programs</h2>
+            <div class="header-underline-white"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <div class="ministry-card bg-white bg-opacity-10 backdrop-blur-sm p-6 rounded-lg">
+                    <div class="text-golden text-4xl mb-4 text-center">
+                        <i class="fas fa-bible"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Bible Study</h3>
+                    <p class="text-center mb-4">Weekly Bible study sessions for spiritual growth and understanding of God's word.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-check text-golden mr-2"></i>Every Wednesday 6:30 PM</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Interactive discussions</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>All ages welcome</li>
+                    </ul>
+                </div>
+
+                <div class="ministry-card bg-white bg-opacity-10 backdrop-blur-sm p-6 rounded-lg">
+                    <div class="text-golden text-4xl mb-4 text-center">
+                        <i class="fas fa-praying-hands"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Prayer Ministry</h3>
+                    <p class="text-center mb-4">Dedicated prayer sessions for healing, breakthrough, and spiritual warfare.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-check text-golden mr-2"></i>Daily morning prayers</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Fasting and prayer</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Intercessory prayer</li>
+                    </ul>
+                </div>
+
+                <div class="ministry-card bg-white bg-opacity-10 backdrop-blur-sm p-6 rounded-lg">
+                    <div class="text-golden text-4xl mb-4 text-center">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Youth Ministry</h3>
+                    <p class="text-center mb-4">Empowering young people to live purposeful lives in Christ.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-check text-golden mr-2"></i>Youth conferences</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Mentorship programs</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Leadership training</li>
+                    </ul>
+                </div>
+
+                <div class="ministry-card bg-white bg-opacity-10 backdrop-blur-sm p-6 rounded-lg">
+                    <div class="text-golden text-4xl mb-4 text-center">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Community Outreach</h3>
+                    <p class="text-center mb-4">Serving our community through various outreach programs and social initiatives.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-check text-golden mr-2"></i>Food distribution</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Medical camps</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Educational support</li>
+                    </ul>
+                </div>
+
+                <div class="ministry-card bg-white bg-opacity-10 backdrop-blur-sm p-6 rounded-lg">
+                    <div class="text-golden text-4xl mb-4 text-center">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Sunday School</h3>
+                    <p class="text-center mb-4">Teaching children the fundamentals of faith through engaging and age-appropriate lessons.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-check text-golden mr-2"></i>Every Sunday 9:00 AM</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Age-grouped classes</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Creative learning methods</li>
+                    </ul>
+                </div>
+
+                <div class="ministry-card bg-white bg-opacity-10 backdrop-blur-sm p-6 rounded-lg">
+                    <div class="text-golden text-4xl mb-4 text-center">
+                        <i class="fas fa-cross"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Evangelism</h3>
+                    <p class="text-center mb-4">Spreading the Gospel message to reach souls for Christ in our community and beyond.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-check text-golden mr-2"></i>Street evangelism</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Door-to-door ministry</li>
+                        <li><i class="fas fa-check text-golden mr-2"></i>Revival meetings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- School of Mission Section -->
+    <section id="school" class="py-16 bg-light dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-primary dark:text-golden">Hope for Life School of Mission</h2>
+            <div class="header-underline"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 items-center">
+                <div class="animate-slide-in-left">
+                    <h3 class="text-2xl font-bold mb-4 text-primary dark:text-golden">Our Vision</h3>
+                    <p class="text-lg mb-6">
+                        To produce well spirit empowered and equipped Servants ready to manifest the Kingdom Power and Knowledge of the word.
+                    </p>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-primary dark:text-golden">What We Offer</h3>
+                    <p class="text-lg mb-6">
+                        In affiliation with Masters Commission International we offer free two-year online courses and in-person classroom sessions focusing on; Missions, Ministry, Evangelism and Leadership.
+                    </p>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-primary dark:text-golden">Our Approach</h3>
+                    <p class="text-lg mb-6">
+                        Reach out, Prepare and Train giving enough facilitation for mission practice which is going to enable our students to go out and bring more Fruits for the Kingdom.
+                    </p>
+                    
+                    <div class="mt-8">
+                        <a href="#contact" class="px-6 py-3 bg-golden hover:bg-golden-dark text-primary font-semibold rounded-md transition-all inline-block transform hover:scale-105">Enroll Today</a>
+                    </div>
+                </div>
+                
+                <div class="animate-slide-in-right">
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border-l-4 border-golden">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-primary dark:text-golden">Course Offerings</h3>
+                        <div class="space-y-6">
+                            <div class="school-feature">
+                                <h4 class="text-xl font-semibold text-secondary dark:text-red-light mb-2">Missions Training</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Comprehensive training in evangelism, church planting, and cross-cultural ministry.</p>
+                            </div>
+                            <div class="school-feature">
+                                <h4 class="text-xl font-semibold text-secondary dark:text-red-light mb-2">Biblical Studies</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Deep dive into Biblical theology, interpretation, and practical application.</p>
+                            </div>
+                            <div class="school-feature">
+                                <h4 class="text-xl font-semibold text-secondary dark:text-red-light mb-2">Leadership Development</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Building strong Christian leaders for ministry and marketplace.</p>
+                            </div>
+                            <div class="school-feature">
+                                <h4 class="text-xl font-semibold text-secondary dark:text-red-light mb-2">Practical Ministry</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Hands-on experience in preaching, teaching, and pastoral care.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-primary dark:text-golden">Ministry Gallery</h2>
+            <div class="header-underline"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+                <div class="gallery-item bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sunday Service" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2 text-primary dark:text-golden">Sunday Service</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Weekly worship gathering</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1531219432768-9f540ce91ef3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Prayer Meeting" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2 text-primary dark:text-golden">Prayer Meetings</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Intercessory prayer sessions</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Youth Ministry" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2 text-primary dark:text-golden">Youth Ministry</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Empowering young lives</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Community Outreach" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2 text-primary dark:text-golden">Community Outreach</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Serving our neighbors</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1544013778-5f85e5d83d84?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bible Study" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2 text-primary dark:text-golden">Bible Study</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Growing in God's Word</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Leadership Training" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2 text-primary dark:text-golden">Leadership Training</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Developing future leaders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-light dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-primary dark:text-golden">Testimonials</h2>
+            <div class="header-underline"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <div class="testimonial-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-l-4 border-golden">
+                    <div class="flex items-center mb-4">
+                        <img src="attached_assets/IMG-20250514-WA0000[1]_1750069740642.jpg" alt="Pastor Dismus Mutuku" class="w-12 h-12 rounded-full object-cover border-2 border-golden">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-primary dark:text-golden">Pst Dismus Mutuku</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Pastor</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 italic">
+                        "This ministry has transformed my life completely. The teachings are powerful and the community is loving and supportive."
+                    </p>
+                </div>
+                
+                <div class="testimonial-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-l-4 border-secondary">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-xl">
+                            L
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-primary dark:text-golden">Larmack</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Youth Leader</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 italic">
+                        "The youth ministry here helped me discover my calling and equipped me with the tools to serve God effectively."
+                    </p>
+                </div>
+                
+                <div class="testimonial-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-l-4 border-accent">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl">
+                            R
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-primary dark:text-golden">Rose Wanjiru</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Sunday School Teacher</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 italic">
+                        "Pastor Dismus has been a wonderful mentor. His passion for missions is contagious and inspiring."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-primary dark:text-golden">Upcoming Events</h2>
+            <div class="header-underline"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <div class="event-card bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                        <i class="fas fa-church text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-secondary dark:text-red-light text-sm font-semibold mb-2">SUNDAY SERVICE</div>
+                        <h3 class="text-xl font-bold mb-3 text-primary dark:text-golden">Weekly Worship Service</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Join us every Sunday for worship, fellowship, and the Word of God.</p>
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>Every Sunday, 10:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-secondary to-primary flex items-center justify-center">
+                        <i class="fas fa-book-open text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-secondary dark:text-red-light text-sm font-semibold mb-2">BIBLE STUDY</div>
+                        <h3 class="text-xl font-bold mb-3 text-primary dark:text-golden">Midweek Bible Study</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Dive deeper into God's Word with interactive study sessions.</p>
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>Every Wednesday, 7:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-golden to-accent flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-6xl text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-secondary dark:text-red-light text-sm font-semibold mb-2">OUTREACH</div>
+                        <h3 class="text-xl font-bold mb-3 text-primary dark:text-golden">Community Outreach</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Serving our community with love, care, and the Gospel message.</p>
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>Monthly, Last Saturday</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prayer Request Section -->
+    <section id="prayer" class="py-16 bg-light dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-primary dark:text-golden">Prayer Requests</h2>
+            <div class="header-underline"></div>
+            
+            <div class="max-w-2xl mx-auto mt-12">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border-l-4 border-golden">
+                    <p class="text-center text-gray-700 dark:text-gray-300 mb-6">
+                        We believe in the power of prayer. Submit your prayer request and our prayer team will pray for you.
+                    </p>
+                    
+                    <form class="prayer-form space-y-4">
+                        <div>
+                            <label for="prayer-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                            <input type="text" id="prayer-name" name="name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-white" placeholder="Your full name">
+                        </div>
+                        
+                        <div>
+                            <label for="prayer-email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                            <input type="email" id="prayer-email" name="email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-white" placeholder="your@email.com">
+                        </div>
+                        
+                        <div>
+                            <label for="prayer-request" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Prayer Request</label>
+                            <textarea id="prayer-request" name="request" rows="5" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-white" placeholder="Share your prayer request here..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-golden hover:bg-golden-dark text-primary font-semibold py-3 px-6 rounded-md transition-all transform hover:scale-105">
+                            Submit Prayer Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-primary dark:text-golden">Contact Us</h2>
+            <div class="header-underline"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-primary dark:text-golden">Get in Touch</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-secondary dark:text-red-light mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg">Location</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Nairobi, Githurai 45, Mwihoko</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-secondary dark:text-red-light mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg">Phone</h4>
+                                <p class="text-gray-600 dark:text-gray-300">+254 123 456 789</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-secondary dark:text-red-light mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg">Email</h4>
+                                <p class="text-gray-600 dark:text-gray-300">info@hopeforlifejesus.org</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-secondary dark:text-red-light mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg">Service Times</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Sunday: 10:00 AM - 12:00 PM</p>
+                                <p class="text-gray-600 dark:text-gray-300">Wednesday: 7:00 PM - 9:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-primary dark:text-golden">Send Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Subject" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <div>
+                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-white"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-golden hover:bg-golden-dark text-primary font-semibold py-3 px-6 rounded-md transition-all transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner With Us Section -->
+    <section id="partner" class="donation-bg py-16 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Partner With Us</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                Your partnership enables us to reach more souls, train ministers, and impact communities for Christ. Join us in advancing God's Kingdom.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-lg">
+                    <i class="fas fa-hand-holding-heart text-4xl mb-4 text-golden"></i>
+                    <h3 class="text-xl font-bold mb-3">One-Time Donation</h3>
+                    <p class="mb-4">Make a one-time contribution to support our ministry work.</p>
+                    <button class="bg-golden text-primary px-6 py-2 rounded-md font-semibold hover:bg-golden-dark transition-all transform hover:scale-105">Donate Now</button>
+                </div>
+                
+                <div class="bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-lg">
+                    <i class="fas fa-calendar-alt text-4xl mb-4 text-golden"></i>
+                    <h3 class="text-xl font-bold mb-3">Monthly Partnership</h3>
+                    <p class="mb-4">Become a monthly partner and support ongoing ministry activities.</p>
+                    <button class="bg-golden text-primary px-6 py-2 rounded-md font-semibold hover:bg-golden-dark transition-all transform hover:scale-105">Partner Monthly</button>
+                </div>
+                
+                <div class="bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-lg">
+                    <i class="fas fa-users text-4xl mb-4 text-golden"></i>
+                    <h3 class="text-xl font-bold mb-3">Volunteer</h3>
+                    <p class="mb-4">Join our team as a volunteer and serve in various ministry areas.</p>
+                    <button class="bg-golden text-primary px-6 py-2 rounded-md font-semibold hover:bg-golden-dark transition-all transform hover:scale-105">Join Team</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="logo.png" alt="Hope for Life Ministry Logo" class="h-10 w-10 object-contain mr-3">
+                        <div class="text-primary font-bold text-2xl">
+                            <span class="text-secondary">Hope</span> for Life
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Reaching, Equipping, Empowering and Sending for the Kingdom of God.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-golden transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-golden transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-golden transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-golden transition-colors"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold mb-4 text-golden">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#about" class="hover:text-golden transition-colors">About Us</a></li>
+                        <li><a href="#mission" class="hover:text-golden transition-colors">Our Ministries</a></li>
+                        <li><a href="#school" class="hover:text-golden transition-colors">School of Mission</a></li>
+                        <li><a href="#events" class="hover:text-golden transition-colors">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold mb-4 text-golden">Ministries</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-golden transition-colors">Intercessory</a></li>
+                        <li><a href="#" class="hover:text-golden transition-colors">Sunday School</a></li>
+                        <li><a href="#" class="hover:text-golden transition-colors">Youth Ministry</a></li>
+                        <li><a href="#" class="hover:text-golden transition-colors">Outreach</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold mb-4 text-golden">Contact Info</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-map-marker-alt mr-2 text-secondary"></i>Githurai 45, Mwihoko, Nairobi</p>
+                        <p><i class="fas fa-phone mr-2 text-secondary"></i>+254 123 456 789</p>
+                        <p><i class="fas fa-envelope mr-2 text-secondary"></i>info@hopeforlifejesus.org</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Hope for Life Jesus Ministry. All rights reserved. Built with love for God's Kingdom.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
